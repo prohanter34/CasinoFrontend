@@ -88,7 +88,11 @@
     font-size: 1.1rem;
 }
 
-
+.account_buttons {
+    margin: 2rem 0 0 0;
+    display: flex;
+    gap: 20px;
+}
 
 
 
@@ -109,4 +113,51 @@
 
 .lose {
     color: rgb(211, 40, 40);
+}
+
+.deposit_container {
+    display: flex;
+    gap: 10px;
+    margin: 10px 0 0 0;
+    width: 30rem;
+}
+
+
+
+
+
+
+
+
+.password_change_window {
+    position: absolute;
+    width: 100vw;
+    height: 100vh;
+    top: 0;
+    left: 0;
+    background-color: rgba(128, 128, 128, 0.486);
+    z-index: 1000;
+}
+
+.password_change_container {
+    display: flex;
+    flex-direction: column;
+    background-color: white;
+    box-shadow: 0 2px 16px rgba(0, 0, 0, 0.24);
+    border-radius: 12px;
+    padding: 1.5rem;
+    padding-top: 0;
+    gap: 15px;
+    width: 20%;
+    margin: 17% auto;
+}
+
+.close_password_change_button {
+    position: relative;
+    left: 95%;
+    top: 1rem;
+    width: max-content;
+    border: none;
+    background-color: transparent;
+    cursor: pointer;
 }

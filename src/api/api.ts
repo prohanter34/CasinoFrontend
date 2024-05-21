@@ -15,10 +15,23 @@ export const authAPI = {
         return instance.post("auth/registration", {login, email, password})
     },
     logoutApi: () => {
-        return instance.delete("auth/logout")
+        return instance.delete<ResultCodeResponseType>("auth/logout")
     },
     verifyEmailApi: (code: number, hashcode: string, email: string) => {
         return instance.post("auth/registration/verify", {code, hashcode: String(hashcode), email})
+    },
+    authWithCookies: () => {
+        return instance.get<LoginResponseType>("auth")
+    },
+    changePassword: (oldPassword: string, newPassword: string) => {
+        return instance.post<ResultCodeResponseType>("auth/changePass", {oldPassword, newPassword})
+    }
+}
+
+export const cashAPI = {
+    depositCashApi: (deposit: number) => {
+        debugger
+        return instance.post<ResultCodeResponseType>("cash/deposit", {"deposit" : deposit})
     }
 }
 

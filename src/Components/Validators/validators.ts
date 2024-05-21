@@ -4,7 +4,7 @@ export const loginValidator = (login: string) => {
 }
 
 export const passwordValidator = (password: string) => {
-    const passwordValidator = /^(?=.*[0-9])(?=.*[!@#$%^&*])(?=.*[a-z])(?=.*[A-Z]).{8,100}$/
+    const passwordValidator = /^(?=.*[0-9])(?=.*[!@#$%^&*.])(?=.*[a-z])(?=.*[A-Z]).{8,100}$/
     return passwordValidator.test(password)
 }
 
