@@ -16,3 +16,8 @@ export const selectEmail = (state: RootState) => {
 export const selectAuthMe = (state: RootState) => {
     return state.auth.me
 }
+
+
+export const selectRouletteState = (state: RootState) => {
+    return state.roulette
+}

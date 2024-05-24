@@ -51,6 +51,9 @@ const authSlice = createSlice({
         setEmail: (state, email: PayloadAction<string>) => {
             state.me.email = email.payload
         },
+        setCash: (state, cash: PayloadAction<number>) => {
+            state.me.cash = cash.payload
+        },
         setState: (state, data: PayloadAction<DataType>) => {
             state.me.login = data.payload.login
             state.me.email = data.payload.email
@@ -68,7 +71,7 @@ const authSlice = createSlice({
     }
 })
 
-export const {setLogin, setResultCode, setChangePassResultCode, setAuthHash, setEmail, setState, changeCash} = authSlice.actions
+export const {setLogin, setResultCode, setCash, setChangePassResultCode, setAuthHash, setEmail, setState, changeCash} = authSlice.actions
 
 export const loginThunk = (login: string, password: string): AppThunk => (dispatch) => {
     authAPI.loginApi(login, password)

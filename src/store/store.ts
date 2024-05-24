@@ -1,9 +1,13 @@
 import { configureStore } from "@reduxjs/toolkit";
 import authSlice from "./authReducer";
+import rouletteSlice from "./rouletteReducer";
 
 
 const store = configureStore({
-    reducer: {auth: authSlice.reducer},
+    reducer: {
+        auth: authSlice.reducer,
+        roulette: rouletteSlice.reducer
+    },
     // middleware: getDefaultMiddleware =>
     // getDefaultMiddleware({
     //   thunk: {

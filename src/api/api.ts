@@ -35,6 +35,18 @@ export const cashAPI = {
     }
 }
 
+export const rouletteAPI = {
+    makeBet: (cash: number, betType: string) => {
+        return instance.post<ResultCodeResponseType>("roulette/bet", {betType, cash})
+    },
+    longpollResults: () => {
+        return instance.get<ResultRouletteGameType>("roulette/result")
+    },
+    pingInfoAboutGame: () => {
+        return instance.get<RouletteGameInfoPing>("roulette/ping")
+    }
+}
+
 type LoginResponseType = {
     email: string,
     login: string,
@@ -44,5 +56,18 @@ type LoginResponseType = {
 }
 
 type ResultCodeResponseType = {
+    resultCode: number
+}
+
+type ResultRouletteGameType = {
+    resultCode: number
+    number: number
+}
+
+type RouletteGameInfoPing = {
+    cash: number,
+    number: number | null,
+    stage: 0 | 1,
+    delta: number,
     resultCode: number
 }
