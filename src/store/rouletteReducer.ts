@@ -1,7 +1,7 @@
 import { PayloadAction, ThunkAction, UnknownAction, createSlice } from "@reduxjs/toolkit"
 import { AppDispatch, RootState } from "./store"
 import { rouletteAPI } from "../api/api"
-import { authByCookiesThunk, setCash } from "./authReducer"
+import { authByCookiesThunk, changeCash, setCash } from "./authReducer"
 
 
 type RouletteStateType = {
@@ -10,6 +10,7 @@ type RouletteStateType = {
     lastResult: number | null,
     stage: number,
     delta: number,
+    resultCode: number,
 }
 
 export type AppThunk<ReturnType = void> = ThunkAction<
@@ -24,7 +25,8 @@ const initialState: RouletteStateType = {
     betType: "",
     lastResult: null,
     stage: 0,
-    delta: 0
+    delta: 0,
+    resultCode: 0,
 }
 
 const rouletteSlice = createSlice({
@@ -37,33 +39,47 @@ const rouletteSlice = createSlice({
         },
         setLastResult: (state, result: PayloadAction<number>) => {
             state.lastResult = result.payload
-        }, setDeltaStage: (state, deltaStage: PayloadAction<{stage: number, delta: number}>) => {
+        }, 
+        setDeltaStage: (state, deltaStage: PayloadAction<{stage: number, delta: number}>) => {
             state.delta = deltaStage.payload.delta
             state.stage = deltaStage.payload.stage
+        },
+        setResultCode: (state, resultCode: PayloadAction<number>) => {
+            state.resultCode = resultCode.payload
         }
     }
 })
 
-export const {makeBet, setLastResult, setDeltaStage} = rouletteSlice.actions
+export const {makeBet, setLastResult, setDeltaStage, setResultCode} = rouletteSlice.actions
 
 
-export const makeBetThunk = (bet: number, betType: string) => (dispatch: AppDispatch) => {
-    rouletteAPI.makeBet(bet, betType)
-    .then((data) => {
-        switch (data.data.resultCode) {
-            case 103:
-                dispatch(makeBet({bet, betType}))
-                dispatch(checkResultsThunk())
-                break;
-            case 11:
-                // говорит о том что сейчас не стадия ставок, мб как-то показать это в UI
-                break;
-            case 5:
-                dispatch(authByCookiesThunk())
-                dispatch(makeBetThunk(bet, betType))
-                break;
-        }
-    })
+export const makeBetThunk = (bet: number, betType: string, cash: number) => (dispatch: AppDispatch) => {
+    if (bet > cash) {
+        dispatch(setResultCode(10))
+    } else {
+        rouletteAPI.makeBet(bet, betType)
+        .then((data) => {
+            debugger
+            switch (data.data.resultCode) {
+                case 103:
+                    dispatch(makeBet({bet, betType}))
+                    dispatch(checkResultsThunk())
+                    dispatch(changeCash(-bet))
+                    break;
+                case 11:
+                    // говорит о том что сейчас не стадия ставок, мб как-то показать это в UI
+                    dispatch(setResultCode(1))
+                    break;
+                case 10:
+                    dispatch(setResultCode(10))
+                    break;
+                case 5:
+                    dispatch(authByCookiesThunk())
+                    dispatch(makeBetThunk(bet, betType, cash))
+                    break;
+            }
+        })
+    }
 }
 
 export const checkResultsThunk = () => (dispatch: AppDispatch) => {

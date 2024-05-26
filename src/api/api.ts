@@ -47,6 +47,21 @@ export const rouletteAPI = {
     }
 }
 
+export const betHistoryAPI = {
+    getHistory: () => {
+        return instance.get<BetHistoryType>("account/betHistory")
+    }
+}
+
+type BetHistoryType = {
+    bets: Array<{
+        bet: number,
+        gain: number,
+        game: string
+    }>,
+    resultCode: number,
+}
+
 type LoginResponseType = {
     email: string,
     login: string,

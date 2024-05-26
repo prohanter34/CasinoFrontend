@@ -1,12 +1,14 @@
 import { configureStore } from "@reduxjs/toolkit";
 import authSlice from "./authReducer";
 import rouletteSlice from "./rouletteReducer";
+import betHistorySlice from "./betHistoryReducer";
 
 
 const store = configureStore({
     reducer: {
         auth: authSlice.reducer,
-        roulette: rouletteSlice.reducer
+        roulette: rouletteSlice.reducer,
+        betHistory: betHistorySlice.reducer
     },
     // middleware: getDefaultMiddleware =>
     // getDefaultMiddleware({

@@ -98,13 +98,17 @@
 
 .bet_container {
     display: flex;
+    flex-direction: column;
+    gap: 1rem;
     justify-content: space-around;
 }
 
 .history_container {
     display: flex;
-    flex-direction: column;
+    justify-content: space-around;
     gap: 1rem;
+    max-height: 45vh;
+    overflow-y: scroll;
 }
 
 .win {
