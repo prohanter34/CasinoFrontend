@@ -29,10 +29,17 @@ export const authAPI = {
 }
 
 export const cashAPI = {
-    depositCashApi: (deposit: number) => {
-        debugger
-        return instance.post<ResultCodeResponseType>("cash/deposit", {"deposit" : deposit})
+    depositCashApi: (deposit: number, promo: string) => {
+        return instance.post<ResultCodeResponseType>("cash/deposit", {deposit, promo})
+    },
+    checkPromoCode: (code: string) => {
+        return instance.get<CheckPromoResponse>(`cash/promo/?code=${code}`)
     }
+}
+
+type CheckPromoResponse = {
+    resultCode: number,
+    coefficient: number
 }
 
 export const rouletteAPI = {

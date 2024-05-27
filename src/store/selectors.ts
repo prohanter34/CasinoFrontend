@@ -9,6 +9,10 @@ export const selectCash = (state: RootState) => {
     return state.auth.me.cash
 }
 
+export const selectPromoState = (state: RootState) => {
+    return state.auth.promoState
+}
+
 export const selectResultCode = (state: RootState) => {
     return state.auth.me.resultCode
 }

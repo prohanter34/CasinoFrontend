@@ -12,8 +12,15 @@ type AuthStateType = {
         changePassResultCode: number,
         hash: string | null,
         verify: boolean | null
-    }
+    },
+    promoState: PromoStateType
 }
+
+type PromoStateType = {
+    promocodeCoefficient: number,
+    promo: string
+}
+
 
 export type AppThunk<ReturnType = void> = ThunkAction<
   ReturnType,
@@ -31,6 +38,10 @@ const initialState: AuthStateType = {
         changePassResultCode: 0,
         hash: null,
         verify: null
+    },
+    promoState: {
+        promocodeCoefficient: 1,
+        promo: ""
     }
 }
 
@@ -68,10 +79,17 @@ const authSlice = createSlice({
         setChangePassResultCode: (state, resultCode: PayloadAction<number>) => {
             state.me.changePassResultCode = resultCode.payload
         },
+        setPromo: (state, promo: PayloadAction<string>) => {
+            state.promoState.promo = promo.payload
+        },
+        setPromoCodCoefficient: (state, coefficient: PayloadAction<number>) => {
+            state.promoState.promocodeCoefficient = coefficient.payload
+        }
     }
 })
 
-export const {setLogin, setResultCode, setCash, setChangePassResultCode, setAuthHash, setEmail, setState, changeCash} = authSlice.actions
+export const {setLogin, setResultCode, setCash, setPromoCodCoefficient, setChangePassResultCode,
+     setAuthHash, setEmail, setState, setPromo, changeCash} = authSlice.actions
 
 export const loginThunk = (login: string, password: string): AppThunk => (dispatch) => {
     authAPI.loginApi(login, password)
@@ -136,14 +154,28 @@ export const logoutThunk = () => (dispatch: AppDispatch) => {
     })
 }
 
-export const depositThunk = (deposit: number) => (dispatch: AppDispatch) => {
-    cashAPI.depositCashApi(deposit)
+export const depositThunk = (deposit: number, promoState: PromoStateType) => (dispatch: AppDispatch) => {
+    cashAPI.depositCashApi(deposit, promoState.promo)
     .then((data) => {
         if (data.data.resultCode === 103) {
-            dispatch(changeCash(deposit))
+            dispatch(changeCash(deposit * promoState.promocodeCoefficient))
         } else if (data.data.resultCode === 5) {
             dispatch(authByCookiesThunk())
-            dispatch(depositThunk(deposit))
+            dispatch(depositThunk(deposit, promoState))
+        }
+    })
+}
+
+export const checkPromocodeThunk = (code: string) => (dispatch: AppDispatch) => {
+    cashAPI.checkPromoCode(code)
+    .then((data) => {
+        if (data.data.resultCode === 103) {
+            dispatch(setPromoCodCoefficient(data.data.coefficient))
+            dispatch(setPromo(code))
+        } else if (data.data.resultCode === 12) {
+            // возможно нужен отдельный resultCode
+            // нехорошо так делать
+            dispatch(setPromoCodCoefficient(-1))
         }
     })
 }
