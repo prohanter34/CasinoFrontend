@@ -4,7 +4,7 @@ import Wheel from "./Wheel"
 
 const Roll = () => {
     return (
-        <div>Roulette
+        <div>
             <Wheel/>
             <Test/>
         </div>
