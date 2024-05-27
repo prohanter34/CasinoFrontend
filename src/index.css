@@ -14,4 +14,6 @@ code {
 
 html {
   font-weight: 600;
+  overflow-y: hidden;
+  overflow-x: hidden;
 }
