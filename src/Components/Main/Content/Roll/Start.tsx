@@ -18,16 +18,23 @@ const Button = () => {
         //     cards[random].style.color = 'white';
         // }, 5000)}
         }
-        style={{
-            backgroundColor: "grey",
-            border: "none",
-            borderRadius: "5%",
-            height: "50px",
-            width: "200px"
-
-    }}>
+        
+        // style={
+        //   "color: red"
+        // }
+        >
+      Daily Bonus
     </button>
   );
 }
 
 export default Button
+
+// {{
+//   backgroundColor: "grey",
+//   border: "none",
+//   borderRadius:"5%",
+//   height: "50px",
+//   width: "2000px"
+
+// }}
