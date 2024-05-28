@@ -1,4 +1,4 @@
-
+/* 
 .a{ 
   .image {
     position: relative;
@@ -25,7 +25,7 @@
       transform: rotate(360deg);
     }
   }
-}
+} */
   
 
 .background {
@@ -45,30 +45,36 @@
   vertical-align: middle;
   float: center;
 }
-.container {
 
+.container {
+  width: 800px;
+  height: 800px;
 }
 
 
 .wheel {
     transition: 10s;
-    width: 1000px;
-    height: 1000px;
+    width: 500px;
+    height: 500px;
 }
 
 .wheels {
-    transition: 10s;
-    width: 1000px;
-    height: 1000px;
+    transition: 15s;
+    width: 500px;
+    height: 500px;
 }
 
 .wheel14 {
     transform: rotate(1980deg);
     transition: 10s;
+    width: 500px;
+    height: 500px;
 }
 
 .wheel14s {
     transform: rotate(180deg);
+    width: 500px;
+    height: 500px;
 }
 
 .wheel35 {
