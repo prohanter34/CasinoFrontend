@@ -1,79 +1,77 @@
+.pivotpoint {
+  position: absolute;
+  top: 50%;
+  left: 50%;
 
+  color: #363636;
+  font-size: 30px;
 
+  transform: translate(-50%, -50%);
+}
 
-  
-  .pivotpoint {
-    position: absolute;
-    top: 50%;
-    left: 50%;
-  
-    color: #363636;
-    font-size: 30px;
-  
-    transform: translate(-50%, -50%);
+@keyframes rotate {
+  from {
+    transform: rotate(0deg);
   }
-  
-  @keyframes rotate {
-    from {
-      transform: rotate(0deg);
-    }
-  
-    to {
-      transform: rotate(360deg);
-    }
+
+  to {
+    transform: rotate(360deg);
   }
 }
-  
+
+
 
 .background {
-    /* margin-left: auto;
+  /* margin-left: auto;
     margin-right: 20px; */
-    /* vertical-align: middle; */
-    float: right;
-    justify-content: center;
-    width: 300px; 
-    height: 280px;
-    background: #ffffff;
-    border-radius: 50%/10%;
-    position: relative;
+  /* vertical-align: middle; */
+  float: right;
+  justify-content: center;
+  width: 300px;
+  height: 280px;
+  background: #ffffff;
+  border-radius: 50%/10%;
+  position: relative;
 }
 
 .elem {
   vertical-align: middle;
   float: center;
-
-.container {
-
 }
 
+  .container {
 
-.wheel {
+  
+  }
+
+
+  .wheel {
     transition: 10s;
     width: 1000px;
     height: 1000px;
-}
+  }
 
-.wheels {
+  .wheels {
     transition: 10s;
     width: 1000px;
     height: 1000px;
-}
+  }
 
-.wheel14 {
+  .wheel14 {
     transform: rotate(1980deg);
     transition: 10s;
-}
+  }
 
-.wheel14s {
+  .wheel14s {
     transform: rotate(180deg);
-}
+  }
 
-.wheel35 {
+  .wheel35 {
     transform: rotate(1890deg);
     transition: 10s;
-}
+  }
 
-.wheel35s {
+  .wheel35s {
     transform: rotate(90deg);
 
-}
+  }
