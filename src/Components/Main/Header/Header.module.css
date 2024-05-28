@@ -7,6 +7,7 @@
     justify-content: space-between;
     height: 7vh;
     padding: 0 3vw 0 2vw;
+    z-index: 2;
 }
 
 .right_flex {

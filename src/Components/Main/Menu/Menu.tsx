@@ -47,7 +47,7 @@ const MyMenu = () => {
 
 
   return (
-    <Sider width={200}>
+    <Sider width={200} style={{zIndex: 2}}>
       <Menu
         mode="inline"
         defaultSelectedKeys={['1']}

@@ -7,11 +7,13 @@ import { authByCookiesThunk, changeCash, setCash } from "./authReducer"
 type RouletteStateType = {
     bet: number,
     betType: string,
-    lastResult: number | null,
+    lastResult: PosibleNumbersType,
     stage: number,
     delta: number,
     resultCode: number,
 }
+
+export type PosibleNumbersType = 0 |1|2|3|4|5|6|7|8|9|10|11|12|13|14|15|16|17|18|19|20|21|22|23|24|25|26|27|28|29|30|31|32|33|34|35|36|37
 
 export type AppThunk<ReturnType = void> = ThunkAction<
   ReturnType,
@@ -23,7 +25,7 @@ export type AppThunk<ReturnType = void> = ThunkAction<
 const initialState: RouletteStateType = {
     bet: 0,
     betType: "",
-    lastResult: null,
+    lastResult: 0,
     stage: 0,
     delta: 0,
     resultCode: 0,
@@ -37,7 +39,7 @@ const rouletteSlice = createSlice({
             state.bet = bet.payload.bet
             state.betType = bet.payload.betType
         },
-        setLastResult: (state, result: PayloadAction<number>) => {
+        setLastResult: (state, result: PayloadAction<PosibleNumbersType>) => {
             state.lastResult = result.payload
         }, 
         setDeltaStage: (state, deltaStage: PayloadAction<{stage: number, delta: number}>) => {
@@ -64,6 +66,7 @@ export const makeBetThunk = (bet: number, betType: string, cash: number) => (dis
                 case 103:
                     dispatch(makeBet({bet, betType}))
                     dispatch(checkResultsThunk())
+                    dispatch(setResultCode(103))
                     dispatch(changeCash(-bet))
                     break;
                 case 11:
@@ -87,6 +90,8 @@ export const checkResultsThunk = () => (dispatch: AppDispatch) => {
     .then((data) => {
         if (data.data.resultCode === 103) {
             dispatch(setLastResult(data.data.number))
+            dispatch(setResultCode(102))
+            // dispatch()
         } else if (data.data.resultCode === 5) {
             // возможно стоит убрать это с бека, результат можно смортеть и без авторизации
             dispatch(authByCookiesThunk())
@@ -101,6 +106,9 @@ export const pingRouletteInfo = () => (dispatch: AppDispatch) => {
         if (data.data.resultCode === 103) {
             dispatch(setCash(data.data.cash))
             dispatch(setDeltaStage({delta: data.data.delta, stage: data.data.stage}))
+            if (data.data.number !== null) {
+                dispatch(setLastResult(data.data.number))
+            }
         } else if (data.data.resultCode === 5) {
             dispatch(authByCookiesThunk())
             // dispatch(pingRouletteInfo())

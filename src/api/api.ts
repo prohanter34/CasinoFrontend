@@ -1,4 +1,5 @@
 import axios from "axios";
+import { PosibleNumbersType } from "../store/rouletteReducer";
 
 
 const instance = axios.create({
@@ -83,12 +84,12 @@ type ResultCodeResponseType = {
 
 type ResultRouletteGameType = {
     resultCode: number
-    number: number
+    number: PosibleNumbersType
 }
 
 type RouletteGameInfoPing = {
     cash: number,
-    number: number | null,
+    number: PosibleNumbersType | null,
     stage: 0 | 1,
     delta: number,
     resultCode: number

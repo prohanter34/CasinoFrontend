@@ -39,39 +39,148 @@
   float: center;
 }
 
-  .container {
+.container {
+  width: 90vw;
+}
 
-  
-  }
+.infoContainer {
+  display: flex;
+  flex-direction: row;
+  background-color: white;
+  box-shadow: 0 2px 16px rgba(0, 0, 0, 0.24);
+  border-radius: 12px;
+  padding: 1.5rem;
+  gap: 15px;
+  width: fit-content;
+  margin: 5rem auto;
+}
+
+.betsContainer {
+  display: flex;
+  flex-direction: column;
+  /* gap: 15px; */
+  width: fit-content;
+  height: 8.5rem;
+  justify-content: space-between;
+}
 
 
-  .wheel {
-    transition: 10s;
-    width: 1000px;
-    height: 1000px;
-  }
+/* .wheelContainer {
+  width: fit-content;
+  position: relative;
+  top: -500px;
+  right: 500px;
+  z-index: 0;
+  /* margin: 10% 10%; */
+/* } */ 
 
-  .wheels {
-    transition: 10s;
-    width: 1000px;
-    height: 1000px;
-  }
 
-  .wheel14 {
-    transform: rotate(1980deg);
-    transition: 10s;
-  }
+.betsColor {
+  display: flex;
+  gap: 15px;
+}
 
-  .wheel14s {
-    transform: rotate(180deg);
-  }
+.oneColorContainer {
+  display: flex;
+  flex-direction: column;
+  gap: 7px;
+  justify-items: center;
+  align-items: center;
+}
 
-  .wheel35 {
-    transform: rotate(1890deg);
-    transition: 10s;
-  }
+.betOnColor {
+  margin: 0 auto;
+  font-size: 1.2rem;
+  font-weight: 700;
+  transition: 2s;
+}
 
-  .wheel35s {
-    transform: rotate(90deg);
+.balance {
+  font-size: 1.5rem;
+  font-weight: 600;
+}
 
-  }
+.offBetOnColor {
+  margin: 0 auto;
+  color: rgba(128, 128, 128, 0.664);
+  font-size: 1.2rem;
+  font-weight: 700;
+  transition: 2s;
+}
+
+.redColor {
+  background-color: red;
+  width: 70px;
+  height: 40px;
+  box-shadow: 0 2px 16px rgba(0, 0, 0, 0.24);
+  border-radius: 12px;
+}
+
+.greenColor {
+  background-color: green;
+  width: 70px;
+  height: 40px;
+  box-shadow: 0 2px 16px rgba(0, 0, 0, 0.24);
+  border-radius: 12px;
+}
+
+.blackColor {
+  background-color: black;
+  width: 70px;
+  height: 40px;
+  box-shadow: 0 2px 16px rgba(0, 0, 0, 0.24);
+  border-radius: 12px;
+}
+
+.offColor {
+  background-color: rgba(128, 128, 128, 0.733);
+  width: 70px;
+  height: 40px;
+  box-shadow: 0 2px 16px rgba(0, 0, 0, 0.123);
+  border-radius: 12px;
+}
+
+.wheelContainer {
+  width: fit-content;
+  z-index: 4;
+
+  margin: -5% auto;
+}
+
+
+.wheel {
+  /* transition: 10s; */
+  width: 1000px;
+  height: 1000px;
+  /* margin: 5rem 30%; */
+}
+
+.wheels {
+  transition: 10s;
+  width: 1000px;
+  height: 1000px;
+}
+
+.timerContainer {
+  margin: 0 auto;
+  width: fit-content;
+}
+
+.timer {
+  position: relative;
+  top: 300px;
+  margin: 0 auto;
+  width: fit-content;
+  z-index: 100;
+  font-size: 5rem;
+}
+
+.arrow {
+  position: relative;
+  top: 8.5rem;
+  z-index: 100;
+    background-image: linear-gradient(180deg, rgba(2,0,36,1) 60%, rgb(35, 35, 250) 100%);
+    clip-path: polygon(6% 0, 94% 0, 50% 100%, 50% 100%);
+    width: 5.4em;
+    height: 5.7em;
+ }
