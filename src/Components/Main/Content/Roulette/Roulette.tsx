@@ -3,8 +3,9 @@ import { selectCash, selectRouletteState } from "../../../../store/selectors"
 import { Button, Input, Radio, RadioChangeEvent, message } from "antd"
 import { ChangeEvent, useEffect, useState } from "react"
 import { makeBetThunk, pingRouletteInfo, setResultCode } from "../../../../store/rouletteReducer"
-
-
+import Roll from "../Roll/Roll"
+import Image from "../../../../img/wheel.png";
+import style from "./Roulette.module.css"
 
 const Roulette = () => {
 
@@ -54,23 +55,27 @@ const Roulette = () => {
     return (
         <div>
             {contextHolder}
+            <div className={style.background}>
+                <div className={style.elem}>
+                <Radio.Group value={chooseBetType} onChange={setBetTypeOnChange}>
+                    <Radio.Button type="primary" value="red">red</Radio.Button>
+                    <Radio.Button type="primary" value="green">green</Radio.Button>
+                    <Radio.Button type="primary" value="black">black</Radio.Button>
+                </Radio.Group>
 
-            <Radio.Group value={chooseBetType} onChange={setBetTypeOnChange}>
-                <Radio.Button type="primary" value="red">red</Radio.Button>
-                <Radio.Button type="primary" value="green">green</Radio.Button>
-                <Radio.Button type="primary" value="black">black</Radio.Button>
-            </Radio.Group>
+                <Input type="number" pattern="/[0-9]/" value={bet} onChange={betInputOnChange} />
 
-            <Input type="number" pattern="/[0-9]/" value={bet} onChange={betInputOnChange} />
-
-            <Button onClick={makeBetOnClick}>Make bet</Button>
-            <div>Result: {rouletteState.lastResult}</div>
-            <div>Your bet: {rouletteState.bet}</div>
-            <div>Your bet on - {rouletteState.betType}</div>
-            <h2>Your cash: {cash}</h2>
+                <Button onClick={makeBetOnClick}>Make bet</Button>
+                <div>Result: {rouletteState.lastResult}</div>
+                <div>Your bet: {rouletteState.bet}</div>
+                <div>Your bet on - {rouletteState.betType}</div>
+                <h2>Your cash: {cash}</h2>
+                </div>
+            </div>
             <h2>Current stage: {rouletteState.stage}</h2>
             <h2>Current delta: {rouletteState.delta}</h2>
-
+            <div className={style.a}><img src={Image} width="450" height="450" alt="imgfile"></img></div>
+            <Roll/>
         </div>
     )
 }

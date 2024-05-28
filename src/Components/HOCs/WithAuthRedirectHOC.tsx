@@ -16,7 +16,7 @@ const WithAuthRedirectHOC = (props: PropsType) => {
             props.element
         )
     } else {
-        return <Navigate to="/"/>
+            return <Navigate to="/"/>
     }
 }
 
