@@ -1,9 +1,6 @@
 
-.a{ 
-  .image {
-    position: relative;
-    animation: 3s linear infinite rotate;
-  }
+
+
   
   .pivotpoint {
     position: absolute;
@@ -44,4 +41,39 @@
 .elem {
   vertical-align: middle;
   float: center;
+
+.container {
+
+}
+
+
+.wheel {
+    transition: 10s;
+    width: 1000px;
+    height: 1000px;
+}
+
+.wheels {
+    transition: 10s;
+    width: 1000px;
+    height: 1000px;
+}
+
+.wheel14 {
+    transform: rotate(1980deg);
+    transition: 10s;
+}
+
+.wheel14s {
+    transform: rotate(180deg);
+}
+
+.wheel35 {
+    transform: rotate(1890deg);
+    transition: 10s;
+}
+
+.wheel35s {
+    transform: rotate(90deg);
+
 }
