@@ -1,30 +1,3 @@
-
-
-
-  
-  .pivotpoint {
-    position: absolute;
-    top: 50%;
-    left: 50%;
-  
-    color: #363636;
-    font-size: 30px;
-  
-    transform: translate(-50%, -50%);
-  }
-  
-  @keyframes rotate {
-    from {
-      transform: rotate(0deg);
-    }
-  
-    to {
-      transform: rotate(360deg);
-    }
-  }
-}
-  
-
 .background {
     /* margin-left: auto;
     margin-right: 20px; */
@@ -41,31 +14,43 @@
 .elem {
   vertical-align: middle;
   float: center;
+}
 
 .container {
+  width: 800px;
+  height: 800px;
 
-}
 
 
 .wheel {
     transition: 10s;
-    width: 1000px;
-    height: 1000px;
+    width: 500px;
+    height: 500px;
+}
+
+.wheels {
+    transition: 15s;
+    width: 500px;
+    height: 500px;
 }
 
 .wheels {
     transition: 10s;
-    width: 1000px;
-    height: 1000px;
+    width: 500px;
+    height: 500px;
 }
 
 .wheel14 {
     transform: rotate(1980deg);
     transition: 10s;
+    width: 500px;
+    height: 500px;
 }
 
 .wheel14s {
     transform: rotate(180deg);
+    width: 500px;
+    height: 500px;
 }
 
 .wheel35 {
@@ -75,5 +60,4 @@
 
 .wheel35s {
     transform: rotate(90deg);
-
 }
