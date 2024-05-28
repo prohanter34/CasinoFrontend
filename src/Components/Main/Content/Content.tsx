@@ -9,7 +9,7 @@ import TestRoll from "./Roulette/TestRoll"
 const Content = () => {
     return (
         <Routes>
-            <Route path="/games/roulette" element={<WithAuthRedirectHOC element={<Roulette />} />}/>
+            <Route path="/games/roulette" element={<WithAuthRedirectHOC element={<TestRoll />} />}/>
             <Route path="/account/me" element={<WithAuthRedirectHOC element={<Account />} />}/>
         </Routes>
     )
